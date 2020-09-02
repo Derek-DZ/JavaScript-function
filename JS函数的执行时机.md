@@ -28,17 +28,18 @@ for (let i = 0; i < 6; i++) {
   }, 0);
 }
 ```
+  - 在每次for循环中，JS都创建了一个i并储存当前i的值，相当于有6个i，i的值分别为0,1,2,3,4,5
+  - setTimeout会等到for循环结束后执行，打印的结果为0,1,2,3,4,5
+  
+- 方法 2：使用立即执行函数
 
-- 方法 2
-这个方法会有一堆看不懂的警告。但能打印出结果
 ```javascript
 let i = 0;
 for (i = 0; i < 6; i++) {
-  setTimeout(
-    !function (i) {
-      console.log(i);
-    }(i),
-    0
-  );
+  !function (i) {
+    setTimeout(() => {
+      console.log(i), 0;
+    });
+  }(i);
 }
 ```
